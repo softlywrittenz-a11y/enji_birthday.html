@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Ka Enji! 🩵✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-top: #dff1ff;
+            --bg-mid: #eef8ff;
+            --bg-bot: #ffffff;
+            --blue-primary: #6cb4ee;
+            --blue-deep: #3b82c4;
+            --blue-soft: #b8dfff;
+            --blue-card: rgba(255, 255, 255, 0.82);
+            --text-dark: #234263;
+            --text-muted: #5b7c9e;
+            --accent-cream: #fff9eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-mid) 50%, var(--bg-bot) 100%);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Floating Bubbles & Clouds */
+        .bg-decor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(147, 204, 255, 0.35));
+            box-shadow: 0 4px 15px rgba(108, 180, 238, 0.15);
+            animation: floatBubble linear infinite;
+        }
+
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.9);
+                opacity: 0;
+            }
+            15% { opacity: 0.85; }
+            85% { opacity: 0.85; }
+            100% {
+                transform: translateY(-115vh) translateX(25px) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .sparkle-bg {
+            position: absolute;
+            color: #7cc0f8;
+            animation: twinkle 3s ease-in-out infinite;
+            user-select: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0.7) rotate(0deg); opacity: 0.25; }
+            50% { transform: scale(1.25) rotate(20deg); opacity: 0.95; }
+        }
+
+        /* Main Card Container */
+        .app-wrapper {
+            position: relative;
+            z-index: 5;
+            width: 92%;
+            max-width: 430px;
+            background: var(--blue-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.95);
+            border-radius: 32px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 20px 50px rgba(72, 139, 201, 0.18), inset 0 0 25px rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        /* Progress Bar (5 Slides) */
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .progress-segment {
+            flex: 1;
+            height: 6px;
+            background: #d6ecff;
+            border-radius: 99px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-segment.active {
+            background: var(--blue-primary);
+            box-shadow: 0 0 10px rgba(108, 180, 238, 0.6);
+        }
+
+        .progress-segment.passed {
+            background: #9acfff;
+        }
+
+        /* Slides */
+        .slides-viewport {
+            position: relative;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: slideEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Animated Hero Icons */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 92px;
+            height: 92px;
+            background: linear-gradient(145deg, #ffffff, #d9eeff);
+            border: 2px solid #ffffff;
+            border-radius: 28px;
+            font-size: 44px;
+            margin-bottom: 18px;
+            box-shadow: 0 12px 28px rgba(108, 180, 238, 0.25);
+            animation: floatIcon 3.2s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: #e1f2ff;
+            color: var(--blue-deep);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 99px;
+            margin-bottom: 12px;
+            border: 1px solid #c2e3ff;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            line-height: 1.25;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        h1 span {
+            color: var(--blue-deep);
+            font-style: italic;
+        }
+
+        p.desc {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        /* Mini Wish Cards on Slide 3 */
+        .wish-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            margin-top: 8px;
+        }
+
+        .wish-item {
+            background: linear-gradient(135deg, #f4faff, #ffffff);
+            border: 1px solid #cce7ff;
+            padding: 11px 14px;
+            border-radius: 16px;
+            font-size: 13.5px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(108, 180, 238, 0.08);
+            opacity: 0;
+            transform: translateX(-14px);
+            animation: itemPop 0.5s ease forwards;
+        }
+
+        .slide.active .wish-item:nth-child(1) { animation-delay: 0.15s; }
+        .slide.active .wish-item:nth-child(2) { animation-delay: 0.3s; }
+        .slide.active .wish-item:nth-child(3) { animation-delay: 0.45s; }
+
+        @keyframes itemPop {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Quote Box on Slide 4 */
+        .quote-box {
+            background: linear-gradient(145deg, #e7f4ff, #f7fbff);
+            border: 1.5px dashed #8cc8fa;
+            border-radius: 20px;
+            padding: 18px 16px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .quote-box p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 16px;
+            color: var(--blue-deep);
+            line-height: 1.5;
+        }
+
+        /* Special Interactive Button on Slide 5 */
+        .magic-btn {
+            background: linear-gradient(135deg, #5aa9e6, #89c9ff);
+            color: #ffffff;
+            border: none;
+            padding: 15px 26px;
+            border-radius: 99px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(90, 169, 230, 0.45);
+            transition: all 0.25s ease;
+            animation: pulseBtn 2s infinite;
+            margin-top: 6px;
+        }
+
+        .magic-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 14px 30px rgba(90, 169, 230, 0.6);
+        }
+
+        .magic-btn:active {
+            transform: scale(0.97);
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(108, 180, 238, 0.55); }
+            50% { box-shadow: 0 0 0 12px rgba(108, 180, 238, 0); }
+        }
+
+        /* Hidden Surprise Reveal Box after pressing button */
+        .surprise-reveal {
+            display: none;
+            margin-top: 16px;
+            background: linear-gradient(145deg, #ffffff, #e3f3ff);
+            border: 2px solid #9bd1ff;
+            border-radius: 22px;
+            padding: 18px 16px;
+            box-shadow: 0 12px 30px rgba(90, 169, 230, 0.25);
+            animation: popInSurprise 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .surprise-reveal.show {
+            display: block;
+        }
+
+        @keyframes popInSurprise {
+            0% { opacity: 0; transform: scale(0.6) translateY(15px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .surprise-reveal h3 {
+            color: var(--blue-deep);
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .surprise-reveal p {
+            font-size: 13.5px;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* Navigation Footer */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 22px;
+            padding-top: 14px;
+            border-top: 1px solid #e1f1ff;
+        }
+
+        .nav-btn {
+            background: #ebf6ff;
+            color: var(--blue-deep);
+            border: 1px solid #cce7ff;
+            padding: 10px 18px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--blue-primary);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Celebration Confetti & Floating Emotes */
+        .celebration-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+            animation: burstFly cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes burstFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+            }
+            80% { opacity: 1; }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(var(--rot));
+            }
+        }
+
+        .falling-confetti {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            z-index: 98;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(108vh) rotate(540deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animated Decor -->
+    <div class="bg-decor" id="bgDecor"></div>
+
+    <!-- Main Interactive Card -->
+    <div class="app-wrapper">
+        <!-- 5-Slide Progress Bar -->
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-segment active" onclick="goToSlide(0)"></div>
+            <div class="progress-segment" onclick="goToSlide(1)"></div>
+            <div class="progress-segment" onclick="goToSlide(2)"></div>
+            <div class="progress-segment" onclick="goToSlide(3)"></div>
+            <div class="progress-segment" onclick="goToSlide(4)"></div>
+        </div>
+
+        <div class="slides-viewport">
+            <!-- SLIDE 1 -->
+            <div class="slide active">
+                <div class="hero-badge">🩵</div>
+                <div class="tag-pill">Special Day Alert ☁️</div>
+                <h1>Happy Birthday, <span>Ka Enji!</span></h1>
+                <p class="desc">
+                    Today is all about celebrating the sweetest soul! Semoga hari ini dipenuhi hal-hal baik, tawa, dan semua energi positif yang bikin Ka Enji happy terus. ✨
+                </p>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="slide">
+                <div class="hero-badge">🦋</div>
+                <div class="tag-pill">Another Year Wiser</div>
+                <h1>Grateful for <span>Your Presence</span></h1>
+                <p class="desc">
+                    Thank you for always bringing calm, warmth, and good vibes wherever you go. Dunia rasanya jauh lebih adem dan seru sejak kenal Ka Enji. Keep shining bright! 🌤️
+                </p>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="slide">
+                <div class="hero-badge">🫧</div>
+                <div class="tag-pill">Little Prayers & Wishes</div>
+                <h1>My Wishes for <span>Ka Enji</span></h1>
+                <div class="wish-list">
+                    <div class="wish-item">💙 <span>Always healthy, happy, & surrounded by genuine love.</span></div>
+                    <div class="wish-item">✨ <span>Semua rencana dan impian Ka Enji dimudahkan jalannya.</span></div>
+                    <div class="wish-item">🌊 <span>Less stress, more peaceful days & endless blessings!</span></div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4 -->
+            <div class="slide">
+                <div class="hero-badge">🧁</div>
+                <div class="tag-pill">A Gentle Reminder</div>
+                <h1>You Deserve <span>The Best</span></h1>
+                <div class="quote-box">
+                    <p>"May this new chapter bring you blue skies, soft moments, and reasons to smile every single day."</p>
+                </div>
+                <p class="desc" style="margin-top: 12px; margin-bottom: 0;">
+                    Jangan lupa apresiasi diri sendiri ya, Ka Enji. You’ve done so well! 🤍
+                </p>
+            </div>
+
+            <!-- SLIDE 5 (Interactive Finale) -->
+            <div class="slide">
+                <div class="hero-badge" id="cakeIcon">🎂</div>
+                <div class="tag-pill">Make A Wish!</div>
+                <h1>One Last Thing, <span>Ka Enji...</span></h1>
+                <p class="desc" id="finalPrompt">
+                    Tutup mata sebentar, make your sweetest birthday wish, lalu pencet tombol biru di bawah ini ya! 👇
+                </p>
+
+                <button class="magic-btn" id="wishBtn" onclick="triggerBirthdayMagic()">
+                    Tap Here to Blow the Candles 🩵✨
+                </button>
+
+                <div class="surprise-reveal" id="surpriseBox">
+                    <h3>🎉 Yeay! Happy Birthday Ka Enji! 🎉</h3>
+                    <p>
+                        May all your wishes come true! Semoga tahun ini jadi tahun paling berkesan, penuh kebahagiaan, dan selalu dilindungi Tuhan. Have a blast today! 🩵🦋✨
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>← Back</button>
+            <span class="slide-counter" id="slideCounter">1 / 5</span>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Generate Pastel Blue Bubbles & Twinkling Stars in Background
+        const bgDecor = document.getElementById('bgDecor');
+
+        for (let i = 0; i < 16; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 55 + 20;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 8 + 7}s`;
+            bubble.style.animationDelay = `${Math.random() * 6}s`;
+            bgDecor.appendChild(bubble);
+        }
+
+        const starIcons = ['✦', '✧', '🩵', '☁️', '🫧'];
+        for (let i = 0; i < 18; i++) {
+            const sp = document.createElement('div');
+            sp.className = 'sparkle-bg';
+            sp.innerText = starIcons[Math.floor(Math.random() * starIcons.length)];
+            sp.style.left = `${Math.random() * 96}%`;
+            sp.style.top = `${Math.random() * 94}%`;
+            sp.style.fontSize = `${Math.random() * 12 + 12}px`;
+            sp.style.animationDelay = `${Math.random() * 3}s`;
+            bgDecor.appendChild(sp);
+        }
+
+        // 2. Slide Navigation Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const segments = document.querySelectorAll('.progress-segment');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+
+        function updateSlideUI() {
+            slides.forEach((s, idx) => {
+                s.classList.toggle('active', idx === currentSlide);
+            });
+
+            segments.forEach((seg, idx) => {
+                seg.classList.remove('active', 'passed');
+                if (idx === currentSlide) seg.classList.add('active');
+                else if (idx < currentSlide) seg.classList.add('passed');
+            });
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+            nextBtn.style.visibility = currentSlide === slides.length - 1 ? 'hidden' : 'visible';
+            slideCounter.innerText = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function changeSlide(dir) {
+            const next = currentSlide + dir;
+            if (next >= 0 && next < slides.length) {
+                currentSlide = next;
+                updateSlideUI();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideUI();
+        }
+
+        // 3. Final Interactive Button Animation (Slide 5)
+        let celebrated = false;
+
+        function triggerBirthdayMagic() {
+            const btn = document.getElementById('wishBtn');
+            const surpriseBox = document.getElementById('surpriseBox');
+            const cakeIcon = document.getElementById('cakeIcon');
+            const finalPrompt = document.getElementById('finalPrompt');
+
+            // Update card content & cake icon
+            cakeIcon.innerText = '🥳';
+            finalPrompt.style.display = 'none';
+            btn.innerText = 'Tap Again for More Magic! 🩵';
+            surpriseBox.classList.add('show');
+
+            // Center burst explosion from button
+            const rect = btn.getBoundingClientRect();
+            const originX = rect.left + rect.width / 2;
+            const originY = rect.top + rect.height / 2;
+            const emojis = ['🩵', '💙', '🦋', '✨', '🫧', '🤍', '🎉', '☁️'];
+
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.className = 'celebration-particle';
+                p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                p.style.left = `${originX}px`;
+                p.style.top = `${originY}px`;
+                p.style.fontSize = `${Math.random() * 14 + 14}px`;
+
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 240 + 70;
+                p.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+                p.style.setProperty('--ty', `${Math.sin(angle) * dist - 40}px`);
+                p.style.setProperty('--rot', `${(Math.random() - 0.5) * 540}deg`);
+                p.style.animationDuration = `${Math.random() * 0.8 + 1.1}s`;
+
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 2000);
+            }
+
+            // Rain down pastel blue confetti & sparkles
+            for (let i = 0; i < 45; i++) {
+                setTimeout(() => {
+                    const conf = document.createElement('div');
+                    conf.className = 'falling-confetti';
+                    conf.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                    conf.style.left = `${Math.random() * 100}vw`;
+                    conf.style.fontSize = `${Math.random() * 12 + 12}px`;
+                    conf.style.animationDuration = `${Math.random() * 2 + 2.5}s`;
+                    document.body.appendChild(conf);
+
+                    setTimeout(() => conf.remove(), 4600);
+                }, i * 55);
+            }
+        }
+    </script>
+</body>
+</html>
